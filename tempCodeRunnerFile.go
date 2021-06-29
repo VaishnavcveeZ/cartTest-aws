@@ -1,0 +1,1 @@
+"static/product-images/" + product.Pname + ".jpg"
