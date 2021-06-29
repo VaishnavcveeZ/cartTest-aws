@@ -85,11 +85,11 @@ func add(response http.ResponseWriter, request *http.Request) {
 	file, _, _ := request.FormFile("pimage")
 	var buf bytes.Buffer
 	io.Copy(&buf, file)
-	content := buf.String()
+	// content := buf.String()
+	// fmt.Printf("file size : %v \n", content)
 	writeName := "static/product-images/" + product.Pname + ".jpg"
-	fmt.Printf("file size : %v \n", content)
 	ioutil.WriteFile(writeName, buf.Bytes(), 0600)
-	product.Image = writeName
+	//product.Image = writeName
 
 	fmt.Println(product)
 	json.NewDecoder(request.Body).Decode(&product)
@@ -110,7 +110,7 @@ func users(response http.ResponseWriter, request *http.Request) {
 		cur.Decode(&result)
 		str := fmt.Sprintf("%v", result[1].Value)
 		data = append(data, str)
-		fmt.Println(result)
+		//fmt.Println(result)
 	}
 
 	templates.ExecuteTemplate(response, "users.html", data)
